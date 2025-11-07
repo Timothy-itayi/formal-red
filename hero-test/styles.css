@@ -1,0 +1,202 @@
+/* ===========================
+   Reset & Base Styles
+   =========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    overflow-x: hidden;
+    background-color: #f5f5f5;
+}
+
+/* ===========================
+   Hero Container
+   =========================== */
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===========================
+   Hero Sections (Left/Right)
+   =========================== */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.hero-section--left {
+    background-color: #E8DDD3; /* Warm beige matching original */
+}
+
+.hero-section--right {
+    background-color: #F5F5F0; /* Light neutral matching original */
+}
+
+.hero-section__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===========================
+   Parallax Layers
+   =========================== */
+.parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+/* Layer-specific z-index */
+.parallax-layer--bg {
+    z-index: 1;
+}
+
+.parallax-layer--model {
+    z-index: 2;
+}
+
+.parallax-layer--text {
+    z-index: 3;
+}
+
+/* ===========================
+   Layer Images
+   =========================== */
+.layer-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.parallax-layer--model .layer-image {
+    object-fit: contain; /* Models should not be cropped */
+    max-width: 90%;
+    max-height: 90%;
+}
+
+/* ===========================
+   Hero Title
+   =========================== */
+.hero-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #E8573F; /* Coral/orange accent from original */
+    text-transform: uppercase;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    user-select: none;
+}
+
+/* Position text in lower section */
+.parallax-layer--text {
+    align-items: flex-end;
+    padding-bottom: 10%;
+}
+
+/* ===========================
+   Performance Optimizations
+   =========================== */
+.hero-container.is-interacting .parallax-layer {
+    will-change: transform;
+}
+
+/* Smooth GPU acceleration */
+.parallax-layer {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* ===========================
+   Responsive Design
+   =========================== */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: clamp(2rem, 6vw, 4rem);
+    }
+    
+    .parallax-layer--model .layer-image {
+        max-width: 95%;
+        max-height: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .hero-section {
+        min-height: 50vh;
+    }
+    
+    .hero-title {
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+    }
+}
+
+/* ===========================
+   Fallback for No-JS
+   =========================== */
+.no-js .parallax-layer {
+    transform: none !important;
+}
+
+/* ===========================
+   Loading State (Optional)
+   =========================== */
+.hero-section__inner::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(232, 87, 63, 0.3);
+    border-top-color: #E8573F;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.hero-section__inner.is-loading::before {
+    opacity: 1;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
