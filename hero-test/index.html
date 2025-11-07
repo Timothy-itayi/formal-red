@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F.R Clothiers - Hero Parallax Prototype</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="hero-container">
+        <!-- Left Side: SEASONAL -->
+        <div class="hero-section hero-section--left">
+            <div class="hero-section__inner">
+                <!-- Layer 1: Background (slowest) -->
+                <div class="parallax-layer parallax-layer--bg" data-speed="0.5">
+                    <img src="assets/seasonal-bg.webp" alt="Seasonal background" class="layer-image">
+                </div>
+                
+                <!-- Layer 2: Model (medium speed) -->
+                <div class="parallax-layer parallax-layer--model" data-speed="1">
+                    <img src="assets/seasonal-model.png" alt="Model in brown suit" class="layer-image">
+                </div>
+                
+                <!-- Layer 3: Text (fastest) -->
+                <div class="parallax-layer parallax-layer--text" data-speed="1.5">
+                    <h2 class="hero-title">SEASONAL</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: WEDDINGS -->
+        <div class="hero-section hero-section--right">
+            <div class="hero-section__inner">
+                <!-- Layer 1: Background (slowest) -->
+                <div class="parallax-layer parallax-layer--bg" data-speed="0.5">
+                    <img src="assets/weddings-bg.webp" alt="Weddings background" class="layer-image">
+                </div>
+                
+                <!-- Layer 2: Model (medium speed) -->
+                <div class="parallax-layer parallax-layer--model" data-speed="1">
+                    <img src="assets/weddings-model.png" alt="Model in tuxedo" class="layer-image">
+                </div>
+                
+                <!-- Layer 3: Text (fastest) -->
+                <div class="parallax-layer parallax-layer--text" data-speed="1.5">
+                    <h2 class="hero-title">WEDDINGS</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
