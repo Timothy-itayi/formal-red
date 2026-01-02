@@ -1,0 +1,13 @@
+{
+  "name": "formal-red-hero-test",
+  "version": "1.0.0",
+  "description": "Dev server for FR Clothiers hero section prototype",
+  "scripts": {
+    "start": "live-server --port=3000 --open=/index.html --watch=index.html,styles.css,script.js,assets",
+    "dev": "live-server --port=3000 --open=/index.html --watch=index.html,styles.css,script.js,assets --no-browser"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
+
