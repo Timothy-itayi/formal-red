@@ -3,369 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FR Clothiers - UI Reference</title>
+    <title>FR Clothiers - Design Iterations</title>
     
     <link rel="preload" as="font" href="https://cdn.shopify.com/s/files/1/0438/1884/4325/files/Unbounded-Bold.ttf?v=1750988446" type="font/ttf" crossorigin="">
-    <style>
-        @font-face {
-            font-family: 'Unbounded';
-            src: url('https://cdn.shopify.com/s/files/1/0438/1884/4325/files/Unbounded-Bold.ttf?v=1750988446') format('truetype');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            overflow-x: hidden;
-            overflow-y: auto;
-            background-color: #ffffff;
-            min-height: 100vh;
-        }
-
-        /* ===========================
-           Header
-           =========================== */
-        .header {
-            position: relative;
-            width: 100%;
-            background-color: #ffffff;
-            z-index: 1000;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .header__inner {
-            max-width: 1400px;
-           
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .header__row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 0;
-        }
-
-        /* Logo */
-        .header__logo {
-            flex-shrink: 0;
-            margin-right: 40px;
-        }
-
-        .header__logo-img {
-            width: 180px;
-            height: auto;
-            display: block;
-        }
-
-        /* Navigation */
-        .header__nav {
-            display: flex;
-            align-items: center;
-            flex: 1;
-        }
-
-        .nav__list {
-            display: flex;
-            list-style: none;
-            gap: 28px;
-            align-items: center;
-        }
-
-        .nav__link {
-            font-size: 14px;
-            font-weight: 500;
-            color: #2a2a2a;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            transition: color 0.2s;
-            cursor: pointer;
-        }
-
-        .nav__link:hover {
-            color: #ec5c39;
-        }
-
-        /* Header Actions */
-        .header__actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: inline-block;
-            background-color: #ec5c39;
-            color: #ffffff;
-        }
-
-        .btn:hover {
-            background-color: #e94118;
-            transform: translateY(-1px);
-        }
-
-        .header__icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            color: #2a2a2a;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .header__icon:hover {
-            color: #ec5c39;
-        }
-
-        .header__icon svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Mobile Header */
-        .header__mobile {
-            display: none;
-        }
-
-        @media (max-width: 960px) {
-            .header__row--desktop {
-                display: none;
-            }
-            
-            .header__mobile {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 12px 0;
-            }
-
-            .header__logo-img {
-                width: 130px;
-            }
-
-            .header__mobile-actions {
-                display: flex;
-                align-items: center;
-                gap: 16px;
-            }
-        }
-
-     /* ===========================
-           Hero Section - Layered Structure
-           =========================== */
-        
-        /* Layer 1: Hero Section Container */
-        .hero {
-            position: relative;
-            width: 100%;
-            /* CHANGED: Removed height: 100vh. 
-               We use auto so the container grows to fit the full images. */
-            height: auto; 
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-            background-color: #000; /* Fallback color */
-        }
-
-        /* Layer 2: Section Layer */
-        .hero__inner {
-            display: flex;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Layer 3: Image Container Layer */
-        .hero__panel {
-            position: relative;
-            /* CHANGED: Forces exactly 50% width each */
-            width: 50%; 
-            flex: 0 0 50%;
-            margin: 0;
-            padding: 0;
-            border: none;
-        }
-
-        /* Layer 4: Image Layer */
-        .hero__image {
-            /* CHANGED: Width 100% fills the panel, Height Auto maintains aspect ratio */
-            width: 100%;
-            height: auto;
-            display: block; /* Removes small white gap at bottom of inline images */
-            object-fit: cover; 
-        }
-
-        /* Layer 5: Text Layer */
-        .hero__content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-            text-align: center;
-            pointer-events: none;
-            width: 100%; /* Ensures text doesn't wrap awkwardly */
-        }
-
-        .hero__heading {
-            font-family: 'Unbounded', sans-serif;
-            font-size: clamp(1.5rem, 4vw, 3rem); /* Adjusted clamp for better scaling */
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            color: #ec5c39;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* Slightly stronger shadow for readability */
-            margin: 0;
-        }
-
-        /* Mobile Adjustments (Optional but recommended) */
-        @media (max-width: 768px) {
-            .hero__inner {
-                flex-direction: column; /* Stacks images on mobile */
-            }
-            .hero__panel {
-                width: 100%;
-                flex: 0 0 100%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <!-- Header -->
+<body class="theme-basic">
+    <!-- Custom Spotlight for Bond Mode -->
+    <div id="spotlight"></div>
+
     <header class="header">
         <div class="header__inner">
-            <!-- Desktop Header -->
-            <div class="header__row header__row--desktop">
+            <div class="header__row">
                 <div class="header__logo">
-                    <img 
-                        class="header__logo-img" 
-                        src="https://www.frclothiers.com.au/cdn/shop/files/Logo_for_header.png?v=1750728451&width=320" 
-                        alt="FR Clothiers Logo"
-                    >
+                    <img class="header__logo-img" src="assets/Logo_for_header.avif" alt="FR Clothiers Logo">
                 </div>
                 
                 <nav class="header__nav">
                     <ul class="nav__list">
-                        <li><span class="nav__link">Suits</span></li>
-                        <li><span class="nav__link">Brands</span></li>
-                        <li><span class="nav__link">Custom Made</span></li>
-                        <li><span class="nav__link">Accessories</span></li>
-                        <li><span class="nav__link">Weddings</span></li>
-                        <li><span class="nav__link">About</span></li>
+                        <li><button class="theme-btn active" data-theme="basic">Basic</button></li>
+                        <li><button class="theme-btn" data-theme="bond">Bond</button></li>
+                        <li><button class="theme-btn" data-theme="3d">3D Depth</button></li>
+                        <li><button class="theme-btn" data-theme="ai">AI Motion</button></li>
                     </ul>
                 </nav>
                 
                 <div class="header__actions">
-                    <span class="btn">Book My Fitting</span>
-                    <span class="btn">Contact Us</span>
-                    
+                    <span class="btn">Book Fitting</span>
                     <span class="header__icon">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M22 16.92V20a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 2 4.18 2 2 0 0 1 4 2h3.09a1 1 0 0 1 1 .75c.12.52.29 1.04.5 1.55l.45 1.11a1 1 0 0 1-.23 1.09l-1.38 1.38a16 16 0 0 0 6.88 6.88l1.38-1.38a1 1 0 0 1 1.09-.23l1.11.45c.51.21 1.03.38 1.55.5a1 1 0 0 1 .75 1V16.92z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
-                    
-                    <span class="header__icon">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M11.048 17.89a6.923 6.923 0 1 0 0-13.847 6.923 6.923 0 0 0 0 13.847z" stroke="currentColor" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"/>
-                            <path d="m16 16 4.308 4.308" stroke="currentColor" stroke-width="1.2" stroke-miterlimit="10"/>
-                        </svg>
-                    </span>
-                    
-                    <span class="header__icon">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M12 12.413a4.358 4.358 0 1 0 0-8.715 4.358 4.358 0 0 0 0 8.715zM3.488 20.857c0-3.085 1.594-5.61 5.26-5.61h6.503c3.667 0 5.261 2.525 5.261 5.61" stroke="currentColor" stroke-width="1.2" stroke-miterlimit="10"/>
-                        </svg>
-                    </span>
-                    
-                    <span class="header__icon">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M16.148 11.479c-.101-1.428-.125-2.985-.296-4.57C15.577 4.37 14.372 2.64 12 2.64S8.423 4.37 8.148 6.908c-.171 1.586-.195 3.142-.296 4.57" stroke="currentColor" stroke-width="1.2" stroke-miterlimit="10" stroke-linejoin="bevel"/>
-                            <path d="M20.701 20.438V8.816H3.3v11.622H20.7z" stroke="currentColor" stroke-width="1.2" stroke-miterlimit="10"/>
-                        </svg>
-                    </span>
-                </div>
-            </div>
-            
-            <!-- Mobile Header -->
-            <div class="header__mobile">
-                <div class="header__logo">
-                    <img 
-                        class="header__logo-img" 
-                        src="https://www.frclothiers.com.au/cdn/shop/files/Logo_for_header.png?v=1750728451&width=320" 
-                        alt="FR Clothiers Logo"
-                    >
-                </div>
-                
-                <div class="header__mobile-actions">
-                    <span class="header__icon">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M11.048 17.89a6.923 6.923 0 1 0 0-13.847 6.923 6.923 0 0 0 0 13.847z" stroke="currentColor" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"/>
-                            <path d="m16 16 4.308 4.308" stroke="currentColor" stroke-width="1.2" stroke-miterlimit="10"/>
-                        </svg>
-                    </span>
-                    
-                    <span class="header__icon">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M16.148 11.479c-.101-1.428-.125-2.985-.296-4.57C15.577 4.37 14.372 2.64 12 2.64S8.423 4.37 8.148 6.908c-.171 1.586-.195 3.142-.296 4.57" stroke="currentColor" stroke-width="1.2" stroke-miterlimit="10" stroke-linejoin="bevel"/>
-                            <path d="M20.701 20.438V8.816H3.3v11.622H20.7z" stroke="currentColor" stroke-width="1.2" stroke-miterlimit="10"/>
-                        </svg>
-                    </span>
-                    
-                    <span class="header__icon">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M3.692 12.646h16.616M3.692 5.762h16.616M3.692 19.608h16.616" stroke="currentColor" stroke-width="1.2"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92V20a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 2 4.18 2 2 0 0 1 4 2h3.09a1 1 0 0 1 1 .75c.12.52.29 1.04.5 1.55l.45 1.11a1 1 0 0 1-.23 1.09l-1.38 1.38a16 16 0 0 0 6.88 6.88l1.38-1.38a16 16 0 0 0 6.88 6.88l1.38-1.38a1 1 0 0 1 1.09-.23l1.11.45c.51.21 1.03.38 1.55.5a1 1 0 0 1 .75 1V16.92z" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </span>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <main class="hero">
-        <div class="hero__inner"><!-- Left Panel - Seasonal -->
+        <div class="hero__inner">
+            <!-- Left Panel -->
             <div class="hero__panel">
-                <img 
-                    class="hero__image" 
-                    src="https://www.frclothiers.com.au/cdn/shop/files/change.png?v=1752564233&width=1000" 
-                    alt="Seasonal"
-                >
+                <div class="panel-meta">
+                    <span class="panel-meta__label">Identity 01</span>
+                    <span class="panel-meta__title">The Seasonal Edit</span>
+                </div>
+                <img class="hero__image" src="assets/original-seasonal.webp" alt="Seasonal">
+                <div class="hero__video-wrap">
+                    <video loop muted playsinline class="hero__video">
+                        <source src="https://cdn.shopify.com/videos/c/o/v/8f1f8b4d8d3f4b8f8b4d8d3f4b8f8b4d.mp4" type="video/mp4">
+                    </video>
+                </div>
                 <div class="hero__content">
                     <h2 class="hero__heading">Seasonal</h2>
+                    <p class="hero__subheading">The Confidence of Occasion</p>
                 </div>
-            </div><!-- Right Panel - Weddings -->
+            </div>
+
+            <!-- Right Panel -->
             <div class="hero__panel">
-                <img 
-                    class="hero__image" 
-                    src="https://www.frclothiers.com.au/cdn/shop/files/Shawl.png?v=1752471967&width=1000" 
-                    alt="Weddings"
-                >
+                <div class="panel-meta">
+                    <span class="panel-meta__label">Identity 02</span>
+                    <span class="panel-meta__title">The Wedding Series</span>
+                </div>
+                <img class="hero__image" src="assets/original-wedding.webp" alt="Weddings">
+                <div class="hero__video-wrap">
+                    <video loop muted playsinline class="hero__video">
+                        <source src="https://cdn.shopify.com/videos/c/o/v/8f1f8b4d8d3f4b8f8b4d8d3f4b8f8b4d.mp4" type="video/mp4">
+                    </video>
+                </div>
                 <div class="hero__content">
                     <h2 class="hero__heading">Weddings</h2>
+                    <p class="hero__subheading">Modern Tradition</p>
                 </div>
             </div>
         </div>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
