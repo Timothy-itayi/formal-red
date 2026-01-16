@@ -11,8 +11,7 @@
 
 :root {
     --primary-orange: #ec5c39;
-    --dark-bg: #000;
-    --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    
 }
 
 * {
@@ -24,8 +23,9 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     overflow-x: hidden;
-    background-color: #ffffff;
-    transition: background-color 0.5s ease;
+    /* Allow vertical scroll so bottom of hero images are reachable */
+   overflow: hidden;
+   height: 100vh;
 }
 
 /* Theme Controller UI (In Header) */
