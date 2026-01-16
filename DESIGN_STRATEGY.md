@@ -19,13 +19,13 @@ Marketing suits to a younger demographic requires moving past "traditional forma
     *   **Motion:** Horizontal parallax tracking. Images shift subtly with mouse movement to create physical depth without heavy 3D assets.
     *   **Meta-Design:** "Identity 01/02" markers that mimic bespoke tailoring order details.
 
-### 2. The 3D Depth (Spline/Blender Style)
-*   **Status:** *In Progress (Scheduled for Tomorrow)*
-*   **Aesthetic:** Physicality and tactile depth.
-*   **Planned Features:**
-    *   **Perspective Tilt:** Using CSS `perspective` and `preserve-3d` to make the hero panels behave like 3D cards.
-    *   **Z-Index Floating:** Text and UI elements will "float" at different depths above the images.
-    *   **Dynamic Lighting:** Simulated reflections and glass-morphism effects that react to the cursor's "light source."
+### 2. The 3D Depth (Showroom Style)
+*   **Aesthetic:** Physical showroom/boutique display with high-end tactile interaction.
+*   **Key Features:**
+    *   **Independent GSAP Tilt:** Each panel reacts independently to mouse movement within its own boundaries, creating a "gallery" feel.
+    *   **Z-Axis Floating:** The heading and subheading (in brand orange) float at different depths (80px and 40px) above the image, creating a deep parallax effect.
+    *   **Showroom Environment:** Max-height panels (85vh) to showcase full-length model photography, grounded with radial floor shadows.
+    *   **Elastic Feedback:** Uses `elastic.out` easing when the mouse leaves, giving the UI a physical, high-quality bounce.
 
 ### 3. AI Motion (Living Photos)
 *   **Aesthetic:** Living photography / Cinemagraphs.
