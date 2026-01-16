@@ -1,0 +1,265 @@
+/* ===========================
+   AI MOTION EXPERIENCE (Enhanced Bond/Kingsman)
+   =========================== */
+.theme-bond {
+    background-color: #ffffff; /* White background for the page */
+}
+
+.theme-bond .hero {
+    background-color: #ffffff;
+}
+
+.theme-bond .hero__inner {
+    justify-content: center;
+    gap: 40px;
+    padding: 40px 0;
+}
+
+.theme-bond .hero__panel {
+    width: 38%;
+    height: 85vh;
+    background: #000; /* Black background for the panels only */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.theme-bond .hero__image {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(1) contrast(1.1) brightness(0.6);
+    transition: filter 0.8s ease;
+    object-fit: contain; /* Reduced down to fit */
+    background: #000;
+    padding: 30px; /* Reduced image size as requested */
+}
+
+.hero__color-reveal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.theme-bond .hero__video-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3; /* Just above color reveal */
+    pointer-events: none;
+    overflow: hidden;
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 30px; /* Match Bond image padding */
+}
+
+.theme-bond .hero__video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: saturate(1.1) contrast(1.1) brightness(0.95);
+}
+
+.hero__color-reveal img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Match base image */
+    padding: 30px; /* Match base padding */
+    filter: saturate(1.1) contrast(1.1) brightness(0.95);
+}
+
+.theme-bond .hero__panel:hover .hero__color-reveal,
+.theme-bond .hero__panel:hover .hero__video-wrap {
+    opacity: 1;
+}
+
+/* Typography: High-End Fashion Magazine Look */
+.theme-bond .hero__heading {
+    font-family: 'Unbounded', sans-serif;
+    color: var(--primary-orange);
+    font-weight: 900;
+    font-size: clamp(2rem, 6vw, 4.5rem); /* Scaled down to fit image width */
+    letter-spacing: -0.02em;
+    text-shadow: none;
+    opacity: 1;
+    margin-bottom: -10px;
+}
+
+.theme-bond .shine-text {
+    background: none !important;
+    -webkit-text-fill-color: var(--primary-orange) !important;
+    background-clip: unset !important;
+}
+
+.theme-bond .hero__subheading {
+    font-family: 'Unbounded', sans-serif;
+    color: var(--primary-orange);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    margin-top: 15px;
+    opacity: 1 !important;
+    transform: none !important;
+    background: rgba(0, 0, 0, 0.6); /* Background for legibility */
+    padding: 4px 12px;
+    backdrop-filter: blur(4px);
+}
+
+.theme-bond .hero__content {
+    opacity: 1;
+    clip-path: inset(0 0 100% 0);
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 60px); /* Constrain to internal image width */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.theme-bond .hero__panel:hover .hero__content {
+    opacity: 1;
+}
+
+/* Meta Labels - Kingsman/Uncle Aesthetic */
+.panel-meta {
+    position: absolute;
+    top: 40px; /* Aligned with image internal edge */
+    left: 40px;
+    z-index: 30; /* Above Bond UI */
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(0, 0, 0, 0.6); /* Background for legibility */
+    padding: 6px 10px;
+    backdrop-filter: blur(4px);
+    border-left: 2px solid var(--primary-orange);
+}
+
+.theme-bond .panel-meta {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Bond Customization UI */
+.bond-ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 30px; /* Match image padding */
+}
+
+.theme-bond .hero__panel:hover .bond-ui {
+    opacity: 1;
+}
+
+.bond-ui__scanner {
+    position: absolute;
+    top: 0;
+    left: 30px; /* Start at image edge */
+    width: calc(100% - 60px); /* Limit to image width */
+    height: 2px;
+    background: var(--primary-orange);
+    box-shadow: 0 0 15px var(--primary-orange), 0 0 30px rgba(236, 92, 57, 0.6);
+    z-index: 25;
+    display: none;
+    transform: translateY(-50%);
+}
+
+.theme-bond .hero__panel:hover .bond-ui__scanner { display: block; }
+
+.bond-ui__corner {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border: 1.5px solid var(--primary-orange);
+    opacity: 0.9;
+}
+
+.bond-ui__corner.top-left { top: 15px; left: 15px; border-right: 0; border-bottom: 0; }
+.bond-ui__corner.top-right { top: 15px; right: 15px; border-left: 0; border-bottom: 0; }
+.bond-ui__corner.bottom-left { bottom: 15px; left: 15px; border-right: 0; border-top: 0; }
+.bond-ui__corner.bottom-right { bottom: 15px; right: 15px; border-left: 0; border-top: 0; }
+
+.bond-ui__data {
+    position: absolute;
+    bottom: 40px; /* Aligned with image internal edge */
+    left: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 9px;
+    color: #000; /* Requirement: Black scramble text */
+    letter-spacing: 0.1em;
+    z-index: 40;
+    background: rgba(241, 229, 188, 0.85); /* HUD-style background for black text */
+    padding: 6px 10px;
+    backdrop-filter: blur(4px);
+}
+
+.scramble-text {
+    display: block;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.panel-meta__label {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--primary-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.panel-meta__title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Texture Overlay */
+.theme-bond .hero__panel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://www.transparenttextures.com/patterns/film-grain.png");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 6;
+}
+
+.theme-bond .hero__panel:hover .hero__image {
+    filter: grayscale(1) contrast(1.1) brightness(0.6);
+    transform: none;
+}
+

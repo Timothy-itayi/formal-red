@@ -7,6 +7,8 @@
     
     <link rel="preload" as="font" href="https://cdn.shopify.com/s/files/1/0438/1884/4325/files/Unbounded-Bold.ttf?v=1750988446" type="font/ttf" crossorigin="">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-bond.css">
+    <link rel="stylesheet" href="styles-3d.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body class="theme-basic">
@@ -23,9 +25,9 @@
                 <nav class="header__nav">
                     <ul class="nav__list">
                         <li><button class="theme-btn active" data-theme="basic">Basic</button></li>
-                        <li><button class="theme-btn" data-theme="bond">Bond</button></li>
+                        <li><button class="theme-btn" data-theme="bond">AI Motion</button></li>
                         <li><button class="theme-btn" data-theme="3d">3D Depth</button></li>
-                        <li><button class="theme-btn" data-theme="ai">AI Motion</button></li>
+               
                     </ul>
                 </nav>
                 
@@ -42,10 +44,21 @@
     <main class="hero">
         <div class="hero__inner">
             <!-- Left Panel -->
-            <div class="hero__panel">
+            <div class="hero__panel" data-suits='["assets/original-seasonal.webp", "assets/seasonal-collection/MOV9868.webp", "assets/seasonal-collection/MOV9876.webp"]'>
+                <div class="bond-ui">
+                    <div class="bond-ui__scanner"></div>
+                    <div class="bond-ui__corner top-left"></div>
+                    <div class="bond-ui__corner top-right"></div>
+                    <div class="bond-ui__corner bottom-left"></div>
+                    <div class="bond-ui__corner bottom-right"></div>
+                    <div class="bond-ui__data">
+                        <span class="scramble-text" data-text="PROTOCOL: UNSTOPPABLE PRECISION">PROTOCOL: UNSTOPPABLE PRECISION</span>
+                        <span class="scramble-text" data-text="OBJECTIVE: DOMINATE THE ROOM">OBJECTIVE: DOMINATE THE ROOM</span>
+                    </div>
+                </div>
                 <div class="panel-meta">
-                    <span class="panel-meta__label">Identity 01</span>
-                    <span class="panel-meta__title">The Seasonal Edit</span>
+                    <span class="panel-meta__label scramble-text" data-text="OCCASION: SEMI FORMAL">OCCASION: SEMI FORMAL</span>
+                    <span class="panel-meta__title scramble-text" data-text="THE SEASONAL COLLECTION">THE SEASONAL COLLECTION</span>
                 </div>
                 <div class="hero__reveal-container">
                     <!-- Images sliding out towards the CENTER (Front) -->
@@ -59,23 +72,37 @@
                 <div class="hero__reveal-card">
                     <img src="assets/seasonal-collection/MOV9852.webp" alt="Seasonal Reveal">
                 </div>
+                <div class="hero__color-reveal">
+                    <img src="assets/original-seasonal.webp" alt="Seasonal Color">
+                </div>
                 <img class="hero__image" src="assets/original-seasonal.webp" alt="Seasonal">
                 <div class="hero__video-wrap">
                     <video loop muted playsinline class="hero__video">
-                        <source src="https://cdn.shopify.com/videos/c/o/v/8f1f8b4d8d3f4b8f8b4d8d3f4b8f8b4d.mp4" type="video/mp4">
+                        <source src="assets/ai-motion-imgs/ai-motion-vids/seasonal-vid.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="hero__content">
                     <h2 class="hero__heading shine-text">Seasonal</h2>
-                    <p class="hero__subheading shine-text">The Confidence of Occasion</p>
+                    <p class="hero__subheading shine-text">Step Into the Season</p>
                 </div>
             </div>
 
             <!-- Right Panel -->
-            <div class="hero__panel">
+            <div class="hero__panel" data-suits='["assets/original-wedding.webp", "assets/wedding-collection/MOV9895.webp", "assets/wedding-collection/MOV9902.webp"]'>
+                <div class="bond-ui">
+                    <div class="bond-ui__scanner"></div>
+                    <div class="bond-ui__corner top-left"></div>
+                    <div class="bond-ui__corner top-right"></div>
+                    <div class="bond-ui__corner bottom-left"></div>
+                    <div class="bond-ui__corner bottom-right"></div>
+                    <div class="bond-ui__data">
+                        <span class="scramble-text" data-text="MISSION: THE GRAND ALLIANCE">MISSION: THE GRAND ALLIANCE</span>
+                        <span class="scramble-text" data-text="STATUS: LICENSE TO CELEBRATE">STATUS: LICENSE TO CELEBRATE</span>
+                    </div>
+                </div>
                 <div class="panel-meta">
-                    <span class="panel-meta__label">Identity 02</span>
-                    <span class="panel-meta__title">The Wedding Series</span>
+                    <span class="panel-meta__label scramble-text" data-text="OCCASION: FORMAL">OCCASION: FORMAL</span>
+                    <span class="panel-meta__title scramble-text" data-text="THE WEDDING SERIES">THE WEDDING SERIES</span>
                 </div>
                 <div class="hero__reveal-container">
                     <!-- Images sliding out towards the CENTER (Front) -->
@@ -89,15 +116,18 @@
                 <div class="hero__reveal-card">
                     <img src="assets/wedding-collection/DB_SHAWL_IVORY.webp" alt="Wedding Reveal">
                 </div>
+                <div class="hero__color-reveal">
+                    <img src="assets/original-wedding.webp" alt="Weddings Color">
+                </div>
                 <img class="hero__image" src="assets/original-wedding.webp" alt="Weddings">
                 <div class="hero__video-wrap">
                     <video loop muted playsinline class="hero__video">
-                        <source src="https://cdn.shopify.com/videos/c/o/v/8f1f8b4d8d3f4b8f8b4d8d3f4b8f8b4d.mp4" type="video/mp4">
+                        <source src="assets/ai-motion-imgs/ai-motion-vids/wedding-collection-ai-motion.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="hero__content">
                     <h2 class="hero__heading shine-text">Weddings</h2>
-                    <p class="hero__subheading shine-text">Modern Tradition</p>
+                    <p class="hero__subheading shine-text">Formal Tradition</p>
                 </div>
             </div>
         </div>
