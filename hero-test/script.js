@@ -17,9 +17,16 @@ let targetY = 0;
 
 // --- Text Scramble Logic ---
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+';
+const scrambleIntervals = new Map();
+
 function scrambleText(element) {
+    if (scrambleIntervals.has(element)) {
+        clearInterval(scrambleIntervals.get(element));
+    }
+
     const originalText = element.dataset.text || element.innerText;
     let iteration = 0;
+    
     const interval = setInterval(() => {
         element.innerText = originalText.split('')
             .map((char, index) => {
@@ -28,9 +35,14 @@ function scrambleText(element) {
             })
             .join('');
         
-        if (iteration >= originalText.length) clearInterval(interval);
+        if (iteration >= originalText.length) {
+            clearInterval(interval);
+            scrambleIntervals.delete(element);
+        }
         iteration += 1 / 3;
     }, 30);
+
+    scrambleIntervals.set(element, interval);
 }
 
 // --- Theme Switching Logic ---
@@ -52,20 +64,27 @@ themeBtns.forEach(btn => {
 
         body.className = `theme-${theme}`;
         
-        if (theme !== '3d') {
-            panels.forEach(panel => {
-                const img = panel.querySelector('.hero__image');
-                const revealCard = panel.querySelector('.hero__reveal-card');
-                const popImages = panel.querySelectorAll('.hero__pop-image');
-                
-                gsap.to(img, { rotationX: 0, rotationY: 0, duration: 0.5 });
-                gsap.to(revealCard, { x: 0, y: 0, rotationX: 0, rotationY: 0, opacity: 0, duration: 0.5 });
-                popImages.forEach(pop => {
-                    gsap.killTweensOf(pop);
-                    gsap.to(pop, { x: 0, y: 0, rotation: 0, opacity: 0, duration: 0.5 });
-                });
-            });
-        }
+        // Reset all animations when switching themes
+        panels.forEach(panel => {
+            const img = panel.querySelector('.hero__image');
+            const revealCard = panel.querySelector('.hero__reveal-card');
+            const popImages = panel.querySelectorAll('.hero__pop-image');
+            const scanner = panel.querySelector('.bond-ui__scanner');
+            const colorReveal = panel.querySelector('.hero__color-reveal');
+            const videoWrap = panel.querySelector('.hero__video-wrap');
+            const heroContent = panel.querySelector('.hero__content');
+            
+            gsap.killTweensOf([img, revealCard, ...popImages, scanner, colorReveal, videoWrap, heroContent]);
+            
+            // Standard resets
+            gsap.set(img, { rotationX: 0, rotationY: 0, filter: 'none', brightness: 1, contrast: 1, grayscale: 0 });
+            gsap.set(revealCard, { x: 0, y: 0, rotationX: 0, rotationY: 0, opacity: 0 });
+            popImages.forEach(pop => gsap.set(pop, { x: 0, y: 0, rotation: 0, opacity: 0 }));
+            
+            // Bond resets
+            gsap.set(scanner, { top: '0%', opacity: 0 });
+            gsap.set([colorReveal, videoWrap, heroContent], { clipPath: 'inset(0 0 100% 0)', opacity: 0 });
+        });
         
         const videos = document.querySelectorAll('.hero__video');
         videos.forEach(v => {
@@ -86,18 +105,12 @@ panels.forEach((panel, panelIndex) => {
     const scanner = panel.querySelector('.bond-ui__scanner');
     const colorReveal = panel.querySelector('.hero__color-reveal');
     const heroContent = panel.querySelector('.hero__content');
-    const heroHeading = panel.querySelector('.hero__heading');
-    const heroSubheading = panel.querySelector('.hero__subheading');
     
     // Bond Suit Selection
     let suitIndex = 0;
     const suits = JSON.parse(panel.dataset.suits || '[]');
 
     panel.addEventListener('mouseenter', () => {
-        if (body.classList.contains('theme-ai')) {
-            video.play().catch(e => console.log("Auto-play blocked"));
-        }
-        
         if (body.classList.contains('theme-bond')) {
             // Start video loop for Bond mode
             if (panelIndex === 1) { // Wedding panel
@@ -113,12 +126,12 @@ panels.forEach((panel, panelIndex) => {
             
             // Reset positions
             gsap.set(scanner, { top: '0%', opacity: 1 });
-            gsap.set([colorReveal, heroContent, videoWrap], { clipPath: 'inset(0 0 100% 0)' });
+            gsap.set([colorReveal, heroContent, videoWrap], { clipPath: 'inset(0 0 100% 0)', opacity: 1 });
             
             const tl = gsap.timeline();
             tl.to(scanner, { 
                 top: '100%', 
-                duration: 4.5, // Decelerated significantly for cinematic timing
+                duration: 4.5, 
                 ease: "none" 
             })
             .to([colorReveal, videoWrap], { 
@@ -130,7 +143,7 @@ panels.forEach((panel, panelIndex) => {
                 clipPath: 'inset(0 0 0% 0)',
                 duration: 1.5, 
                 ease: "power2.out"
-            }, 1.5) // Starts once scanner is well into the panel
+            }, 1.5)
             .to(scanner, {
                 opacity: 0,
                 duration: 0.6,
@@ -149,7 +162,8 @@ panels.forEach((panel, panelIndex) => {
                 duration: 0.1,
                 onComplete: () => {
                     img.src = suits[suitIndex];
-                    colorReveal.querySelector('img').src = suits[suitIndex]; // Update reveal image too
+                    const revealImg = colorReveal.querySelector('img');
+                    if (revealImg) revealImg.src = suits[suitIndex];
                     gsap.to(img, {
                         filter: 'grayscale(1) contrast(1.1) brightness(0.6)',
                         duration: 0.4
@@ -199,12 +213,10 @@ panels.forEach((panel, panelIndex) => {
     });
 
     panel.addEventListener('mouseleave', () => {
-        if (body.classList.contains('theme-ai') || body.classList.contains('theme-bond')) {
+        if (body.classList.contains('theme-bond')) {
             video.pause();
             gsap.to(video, { currentTime: 0, duration: 0.5, ease: "power2.inOut" });
-        }
-
-        if (body.classList.contains('theme-bond')) {
+            
             gsap.killTweensOf([scanner, colorReveal, heroContent, videoWrap]);
             gsap.to(scanner, { top: '0%', duration: 0.5 });
             gsap.to([colorReveal, heroContent, videoWrap], { clipPath: 'inset(0 0 100% 0)', duration: 0.5 });
@@ -221,20 +233,6 @@ panels.forEach((panel, panelIndex) => {
     });
 });
 
-// --- Global Animation Loop ---
-function animate() {
-    mouseX += (targetX - mouseX) * 0.1;
-    mouseY += (targetY - mouseY) * 0.1;
-
-    requestAnimationFrame(animate);
-}
-
-window.addEventListener('mousemove', (e) => {
-    targetX = e.clientX;
-    targetY = e.clientY;
-});
-
-animate();
 document.querySelectorAll('.hero__video').forEach(v => {
     v.pause();
     v.currentTime = 0;

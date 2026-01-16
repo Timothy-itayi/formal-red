@@ -130,16 +130,21 @@
     transition: transform 0.5s ease;
 }
 
+.theme-3d .hero__content {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
 .theme-3d .hero__heading {
     color: var(--primary-orange);
-    transform: translateZ(80px); /* Significant depth */
     pointer-events: none;
+    /* Removed translateZ for flat plane text */
 }
 
 .theme-3d .hero__subheading {
-    color: var(--primary-orange);
-    opacity: 0.6;
-    transform: translateZ(40px);
+    color: #fff;
+    opacity: 0.8;
+    /* Removed translateZ for flat plane text */
 }
 
 /* Reflection / Gloss effect for 3D */

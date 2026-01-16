@@ -1,6 +1,14 @@
 /* ===========================
    Base Hero Styles (Basic)
    =========================== */
+@font-face {
+    font-family: 'Unbounded';
+    src: url('https://cdn.shopify.com/s/files/1/0438/1884/4325/files/Unbounded-Bold.ttf?v=1750988446') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --primary-orange: #ec5c39;
     --dark-bg: #000;
